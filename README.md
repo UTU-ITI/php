@@ -1,6 +1,6 @@
 # Curso de Introducción a programación PHP
 
-## Introducción
+## Introducción a PHP
 
 *   [¿Qué es PHP?](docs/Intro.md)
 *   [Instalación y configuración](docs/Instalacion.md)
@@ -18,8 +18,8 @@
 
 ## Arrays
 
-*   [Arrays](docs/Arrays.md)
-
+*   [Arrays predefinidas](docs/Arrays.md)
+*   [Arrays Ejercicios Explicados](docs/EjercicioArrays.md)
 ## BBDD
 
 *   [Conexión a la base de datos](docs/conexion.md)
