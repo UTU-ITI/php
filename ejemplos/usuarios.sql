@@ -1,9 +1,9 @@
 
 -- Crear base de datos
-CREATE DATABASE IF NOT EXISTS usuarios_db CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS usuarios_iti CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- Usar la base de datos
-USE usuarios_db;
+USE usuarios_iti;
 
 -- Crear tabla de usuarios
 CREATE TABLE IF NOT EXISTS usuarios (
