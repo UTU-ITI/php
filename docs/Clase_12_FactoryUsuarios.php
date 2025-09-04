@@ -7,7 +7,7 @@ class User {
     public function __construct(
         private string $username,
         private string $email
-    ) {}
+    ) 
 
     public function getUsername(): string {
         return $this->username;
