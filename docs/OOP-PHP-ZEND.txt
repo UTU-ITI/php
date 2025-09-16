@@ -1,0 +1,359 @@
+Skip to main content
+Secondary Navigation
+
+Partners
+Downloads 
+Customer Portal
+Company 
+Contact Us
+Home
+Mega Menu
+Solutions
+Show submenu for Solutions
+Products
+Show submenu for Products
+Customers
+Support
+Show submenu for Support
+Services
+Show submenu for Services
+Resources
+Show submenu for Resources
+Free Trial 
+Blog
+
+February 29, 2024
+
+PHP Object-Oriented Programming Design Basics
+
+Doug Bierer
+Doug Bierer
+PHP Development
+LinkedInXFacebookEmailShare
+From flexibility to scalability, PHP object-oriented programming is a programming paradigm that offers a wide range of benefits for modern web applications. Today we'll be looking a the foundational concepts of object-oriented programming in PHP — encapsulation, inheritance, abstraction, and polymorphism — and how these concepts can be used in the creation of robust, scalable, and maintainable code. 
+
+Let's get started with a quick history lesson on the origins of object-oriented programming in PHP.
+
+Table of Contents
+The Origins of Object-Oriented Programming in PHP
+Fundamental Principles of PHP Object-Oriented Programming
+Final Thoughts
+Back to top
+The Origins of Object-Oriented Programming in PHP
+Looking back to 1999, at the time I wrote my first PHP program, procedural programming was the only way to go. A typical PHP script was heavily intertwined with HTML, and the line-by-line procedural programming style lent itself to this stage of development. Not too long afterward, PHP 4 was introduced with its first cut at object-oriented programming (OOP). But it wasn’t until PHP 5 that object-oriented PHP development began in earnest.
+
+PHP Object-Oriented Programming Arrives
+Starting with PHP 5, the language offered full-fledged OOP support, allowing developers to create classes, methods, and properties that are essential for OOP. PHP's OOP features enable you to build scalable and secure web applications by encapsulating related logic into objects. This is particularly useful in the context of web development, where modular components such as user authentication systems, database connections, and content management functionalities can be developed using OOP principles for better organization and reuse. 
+
+It’s also interesting to note that many modern PHP frameworks, such as Laminas, Laravel and Symfony, are built around OOP concepts, making OOP knowledge a necessity for PHP developers looking to utilize these frameworks effectively.
+
+PHP OOP Benefits Developers
+I’ll have to admit that I was brought into the object-oriented PHP world kicking and screaming! I used to contend (and still contend) that PHP OOP adds extra overhead. However, being able to place functions in the same package with variables and constants is a game changer in terms of development, especially in projects that will need to scale up in size.
+
+Get PHP OOP Training From Our Experts
+Zend offers multiple courses on object-oriented programming, including both instructor-led and free, on-demand courses.
+
+Explore Zend Training Courses
+
+Back to top
+Fundamental Principles of PHP Object-Oriented Programming
+Before you can start to understand classic OOP software design patterns, you must first understand four key principles of OOP: Encapsulation, Abstraction, Inheritance, and Polymorphism. These principles apply not only to PHP OOP, but also to any object-oriented language.
+
+View PHP OOP Documentation
+
+PHP OOP Encapsulation
+Encapsulation refers to the bundling of data with the methods that operate on that data, or the restriction of direct access to some of an object's components.
+
+Encapsulation is one of the fundamental principles of OOP. It is crucial because it enables a high level of data integrity by shielding an object's internal state from unwanted interference and misuse. 
+
+In the context of PHP object-oriented programming, encapsulation ensures that an object's internal workings are hidden from the outside world, and only a controlled interface is exposed for interaction. This not only prevents the object's internal data from being altered in unpredictable ways but also makes the code more secure and robust against changes, as the implementation details can evolve without impacting other parts of the system that rely on the object.
+
+Implementing PHP Encapsulation
+To implement encapsulation in PHP, developers use access modifiers: `public`, `protected`, and `private` when declaring class properties and methods. A `public` property or method can be accessed from anywhere - both inside and outside the class. A `protected` property or method can be accessed within the class itself and by inheriting and parent classes. A `private` property or method, however, is only accessible within the class that defines it. By carefully choosing the appropriate access modifier, you control the visibility of properties and methods, thereby encapsulating the object's data.
+
+Many PHP developers also implement “getter” and “setter” methods, which are public methods that allow controlled access to private or protected properties, further enforcing encapsulation by letting the class control the values and operations allowed on its properties. My personal take on this is that these methods are yet another example of OOP bloat and are often overused and unnecessary. However, in a number of cases you might need to exert additional control over property access. It’s also possible that the data might need further manipulation, as in this example:
+
+// Date and time is presented as a string
+public function setDate(string $date)
+{
+	// You wish the property to be stored as a DateTime instance
+	$this→date = new DateTime($date);
+}
+ 
+
+Encapsulation: Key Benefits
+Encapsulation brings numerous benefits to PHP applications. By controlling how the data within objects is accessed and modified, encapsulation promotes a more modular and cohesive codebase. Updates and bug fixes to a class can often be made with minimal impact on the rest of the application, as long as the public interface of the class remains unchanged. This makes PHP applications easier to maintain and extend over time. 
+
+Encapsulation also enhances security, as critical parts of the code are hidden from external access, reducing the risk of accidental or malicious tampering. Moreover, encapsulated code is more likely to be reusable, since the implementation details are separated from the exposed interface, allowing PHP developers to leverage the same classes across different parts of the application or in entirely different projects without risking unwanted side effects.
+
+Abstraction in PHP Object-Oriented Programming
+In programming, abstraction is the concept of moving the focus from the details and specifics of how something is implemented to a higher level where we can think about the ideas more generally. 
+
+It helps in reducing complexity and allows programmers to focus on interactions at a higher level. In PHP, an abstract class is a class that cannot be instantiated on its own and is used as a blueprint for other classes. 
+
+Abstract Classes
+Abstract classes are declared with the abstract keyword and are used to define methods that must be implemented by any subclass that extends the abstract class.
+
+Here are some key points about abstract classes in PHP:
+
+Declaration: An abstract class is defined by prefixing the class name with the abstract keyword.
+abstract class Connect 
+{
+    // Abstract methods and properties
+}
+Extending: To utilize an abstract class, a subclass must extend it and provide implementations for the abstract methods.
+class PdoConnect extends Connect
+{
+    /** 
+     * Provides a PDO database connection
+     */
+    public function connect(array $params)
+    {
+        [$dsn, $user, $pwd, $opts] = $params;
+        return new PDO($dsn, $user, $pwd, $opts);
+    }
+}
+Instantiation: You cannot create an instance of an abstract class directly.
+$connect = new Connect($params); // This will cause an error
+$connect = new PdoConnect($params); // Works
+Purpose: The primary purpose of an abstract class is to provide a common definition of a base class that multiple derived classes can share. The focus of a PHP abstract class is on building an inheritance hierarchy of classes.
+Interfaces
+An interface in PHP is used to define a set of methods that implementing classes must adhere to. 
+
+Interfaces are similar to abstract classes in that they cannot be instantiated and any class that implements an interface must implement all of its methods. However, interfaces cannot have properties or full method implementations, while abstract classes can.
+
+•    Declaration: An interface is defined using the interface keyword.
+
+interface EncryptInterface 
+{
+    public function encrypt(string $text) : string;
+}
+Implementing: A class that implements an interface must use the implements keyword and must provide concrete implementations of all the interface's methods.
+class Login implements EncryptInterface 
+{
+    // mandated by EncryptInterface
+    public function encrypt(string $text) : string 
+    {
+        return password_hash($text, PASSWORD_DEFAULT);
+    }
+}
+Multiple Interfaces: A class can implement multiple interfaces, which is a way to achieve multiple inheritance in PHP. This is because the interface inserts itself into the inheritance hierarchy just above the implementing class as a pseudo-superclass.
+
+class Login implements EncryptInterface, VerifyInterface
+{
+    // mandated by EncryptInterface
+    public function encrypt(string $text) : string 
+    {
+        return password_hash($text, PASSWORD_DEFAULT);
+    }
+    // also implements the method or methods mandated
+    // by VerifyInterface
+}
+Purpose: The main purpose of interfaces is to provide a formal contract that implementing classes must follow, ensuring that they present a specific set of methods to the outside world. PHP interfaces are independent of and not tied to an inheritance hierarchy, making them extremely flexible and useful.
+Differences between Abstract Classes and Interfaces
+ 	Classes	Interfaces
+Implementation	Can have both abstract and concrete methods with full implementation	Can only have abstract methods
+Properties	Can have properties	Cannot have properties
+Constants	Can have constants	Can have costants
+Inheritance	Can extend one abstract class (single inheritance), but it can implement multiple interfaces (multiple pseudo-inheritance).	n/a
+Method Visibility	Can have public and protected class visibilities	All methods must be public
+Design Purpose	Used when classes share a common base of operations	Used when establishing a common interface for different classes regardless of the inheritance hierarchy.
+OOP Inheritance
+Inheritance allows a class, known as a child class or subclass, to inherit properties, methods, and behaviors from another class, known as a parent class or superclass. 
+
+Inheritance is a fundamental concept in PHP OOP. This mechanism enables code reusability and establishes a relationship between classes where the subclass is a specialized version of the superclass. The subclass can add its own unique features or override the behavior of the superclass, which promotes a hierarchical organization of classes. 
+
+Inheritance embodies the "is a" relationship, meaning a subclass is a type of the superclass. This leads to a more intuitive arrangement of code and can greatly reduce redundancy, as shared functionalities need to be written only once in the superclass.
+
+Using Inheritance in PHP to Extend Classes
+In PHP, inheritance is implemented by using the extends keyword in the class declaration. When a class extends another, it inherits all the non-private properties and methods of the parent class. This allows the child class to leverage and extend the functionality defined in the parent class. 
+
+For example, if you have a class HashBase with basic properties like ‘algorithm’ and ‘hashr,’ and methods like ‘makeHash()’ and ‘getAlgorithm(),’ you could extend this class to create more specific types of hashing, like HashWithMd5 or HashWithSha256, which will automatically have access to the HashBase class's properties and methods. The child class can also define additional properties or methods, as well as override inherited methods to provide specialized behavior.
+
+class HashBase
+{
+    public string $algorithm = ‘none’;
+    public string $hash = ‘’;
+    public function makeHash(string $text) : string
+    {
+        $this->hash = $text;
+        return $this->hash;
+    }
+    public function getAlgorithm() : string
+    {
+        return $this->algorithm;
+    }
+}
+
+class HashWithMD5 extends HashBase
+{
+    public string $algorithm = ‘md5’;
+    public function makeHash(string $text) :  void
+    {
+        $this->hash = md5($text);
+        return $this->hash;
+    }
+}
+ 
+
+Best Practices for Using Inheritance in PHP
+When using inheritance in PHP, there are several best practices you should consider to create clean, maintainable, and scalable code:
+
+Use Inheritance Sparingly: Inheritance should only be used when there is a clear relationship and shared behavior. Overusing inheritance can lead to complex hierarchies that are hard to understand and maintain.
+Prefer Composition Over Inheritance: In many cases, using composition (including objects of other classes as properties) can be more flexible than inheritance. This is often referred to as the "has a" relationship.
+Protected Over Private: If you think a property or method should be hidden from the public but still accessible to child classes, use protected instead of private visibility. This ensures encapsulation while still allowing inheritance.
+Liskov Substitution Principle (LSP): When overriding methods, make sure that the child class's methods can safely replace the parent class's methods. This means they should accept the same input parameters and return the same types.
+Avoid Deep Inheritance Hierarchies: Deeply nested inheritance can become problematic and hard to follow. Instead, aim for a shallow hierarchy and consider other design patterns, like interfaces, to provide flexibility.
+By adhering to these practices, you can leverage the full potential of inheritance in PHP to create a robust and scalable object-oriented design.
+
+OOP Polymorphism
+Polymorphism allows objects of different classes to be treated as objects of a common superclass. 
+
+The term "polymorphism" comes from the Greek words "poly" (meaning many) and "morph" (meaning form), and it essentially allows for multiple forms or behaviors. In the context of OOP, this means that a single function or method can work across different types of objects. It enables objects with different internal structures to share the same external interface. This is particularly useful when multiple classes share a common set of behaviors but implement them in different ways. Polymorphism promotes flexibility and maintainability in code by allowing you to write more general and reusable components.
+
+Implementing Polymorphism in PHP
+In PHP, polymorphism is implemented through inheritance and interfaces. When a class inherits from another class, it can override parent class methods to provide specific implementations. This is a form of polymorphism called subclass polymorphism. 
+
+PHP also allows for polymorphism through interfaces. An interface is a contract that specifies what methods a class must implement, without providing the method's implementation. Classes that implement the same interface can be used interchangeably within the code, as they guarantee the presence of the methods defined by the interface.
+
+interface ShapeInterface
+{
+    public function calculateArea();
+}
+
+class Circle implements ShapeInterface 
+{
+    protected $radius;
+
+    public function __construct($radius) 
+    {
+        $this->radius = $radius;
+    }
+
+    public function calculateArea() 
+    {
+        return pi() * pow($this->radius, 2);
+    }
+}
+
+class Rectangle implements ShapeInterface 
+{
+    protected $width;
+    protected $height;
+
+    public function __construct($width, $height) 
+    {
+        $this->width = $width;
+        $this->height = $height;
+    }
+
+    public function calculateArea() 
+    {
+        return $this->width * $this->height;
+    }
+}
+
+$print = function (ShapeInterface $shape) 
+{
+    echo 'The area is: ' . $shape->calculateArea();
+}
+$print = function (ShapeInterface $shape)
+{
+    echo 'The area is: ' . $shape->calculateArea() . PHP_EOL;
+};
+
+$print(new Circle(9));
+$print(new Rectangle(9,9));
+
+// Actual Output:
+/*
+The area is: 254.46900494077
+The area is: 81
+*/
+In the above example, both Circle and Rectangle implement the Shape interface. The $print anonymous function can accept any instance of Shape, whether it be a Circle, Rectangle, or any other shape that might be defined in the future, demonstrating polymorphism.
+
+The Power of Polymorphism in Application Design
+Polymorphism is incredibly powerful in application design because it promotes the use of a more abstract and high-level interface. This encourages the development of more flexible and maintainable code. It allows developers to write programs that process objects that share the same superclass in a uniform way, even if each subclass has vastly different implementations. 
+
+This is particularly beneficial in large systems where changes are frequent, as it minimizes the impact of changes. For example, a payment processing system can use polymorphism to handle different payment methods. Each payment method, like credit card, PayPal, or bank transfer, can be implemented as a separate class that conforms to a common PaymentMethod interface. 
+
+The rest of the system can interact with any payment method thanks to PHP’s polymorphism support, allowing for the easy addition or modification of payment methods without affecting the core processing logic.
+
+Back to top
+Final Thoughts
+In our exploration of Object-Oriented Programming design basics for PHP applications, we have covered some foundational concepts that are essential for developing robust, maintainable, and scalable code. We've seen how OOP principles like encapsulation, inheritance, and abstraction help organize and manage complexity by modeling your data and behaviors into objects. We've delved into polymorphism, a powerful feature that allows different classes to be treated under a common interface, enabling you to write more flexible and reusable code.
+
+The journey into PHP OOP is both exciting and rewarding. As you begin to implement these OOP concepts into your PHP applications, you'll notice a transformation in the way you think about and solve programming problems. I encourage you to practice and experiment with these concepts. Start by refactoring a procedural codebase into an object-oriented one or try building a new PHP project from scratch using the OOP principles discussed.
+
+OOP is not a static field, and the landscape of PHP continues to evolve. With each new version of PHP, features are added and improved upon, offering even greater tools for OOP. The continuous learning in PHP OOP is a journey without an end, and as you grow more comfortable with the basics, you'll find yourself delving into more advanced topics such as design patterns, SOLID principles, and component-based architecture.
+
+Remember, the key to mastery in any aspect of programming, including PHP OOP, is consistent practice and a willingness to keep learning. Join PHP communities, contribute to open-source projects, and never hesitate to experiment with your own ideas. As you embrace the dynamic nature of PHP and its object-oriented capabilities, you'll be well on your way to becoming an adept PHP developer capable of crafting elegant solutions to complex problems. Happy coding!
+
+Prove Your PHP Expertise With Zend Training and Certification
+Expand your practical knowledge and display your PHP expertise through in-depth training courses and the Zend PHP Certified Engineer exam. Click the buttons below for details.
+
+Training Options  Become PHP Certified
+
+Additional Resources
+Instructor-Led Training Course - PHP Object-Oriented Programming
+Free Training Course - Object-Oriented Programming Software Patterns
+Guide - Developing Web Applications With PHP
+On-Demand Webinar - Developing Robust 12-Factor Web Applications
+Blog - How to Use the PHP cURL Extension in REST APIs
+Blog - How to Use Db2 Services for PHP Apps on IBM i
+Blog - How to Develop a WordPress Plugin
+Blog - Drupal Module Development: The Ultimate Guide for PHP Developers
+In a shameless plug, you can have a look at books I have written here.
+Back to top
+Footer
+Solutions
+PHP Cloud Solutions
+PHP Container Solutions
+Windows Solutions
+PHP Security Center
+PHP Security Solutions
+Hosting Provider Solutions
+Products
+ZendPHP
+Zend LTS
+ZendHQ
+Support
+Explore Support
+Documentation
+Download Software
+Download Plugins
+Request Support
+Request Pricing
+Services
+Explore Services
+Black Belt Services
+Migrations Services
+Custom Consulting
+Admin as a Service
+PHP Long-Term Support
+Audits
+Trainings
+Certifications
+Resources
+eBooks & Papers
+Webinars
+Videos
+Blog
+Customers
+All Resources
+Logo
+© 2025 Perforce. All Rights Reserved.
+Privacy Policy | Terms of Use | Trust Center
+This website uses cookies to enhance user experience and analyze performance. By clicking "Accept All Cookies" or by closing this window without setting preferences, you agree to the storing of cookies on your device.Read our cookie policy.
+Cookies Settings Accept All Cookies
+
+close promotion
+go to promotion
+Reintroducing the Zend PHP Certification
+Certify your expertise and advance your career by becoming a Zend PHP Certified Engineer.
+Details Here
+close promotion
+go to promotion
+2025 PHP Landscape Report Now Available
+Discover the top trends and challenges faced by PHP professionals in 2025, including expert insight and analysis on what the data means for your team.
+Get Your Free Copy
