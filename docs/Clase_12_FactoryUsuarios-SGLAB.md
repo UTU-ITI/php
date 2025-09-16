@@ -20,11 +20,13 @@ abstract class Registro {
     public string $ip;
     public string $descripcion;
 
-    public function __construct($fecha, $estado, $ip, $descripcion) {
+    public function __construct($fecha, $estado, $ip, $descripcion,diskFree) {
         $this->fecha = $fecha;
         $this->estado = $estado;
         $this->ip = $ip;
         $this->descripcion = $descripcion;
+        $this->diskFree = $diskFree;
+
     }
 
     abstract public function mostrarRegistro(): string;
