@@ -15,6 +15,7 @@
 ## Funciones
 
 *   [Funciones predefinidas](docs/Funciones.md)
+*   [Funciones Ejercicios Explicados](docs/Funciones_Ejercicios.md)
 
 ## Arrays
 
